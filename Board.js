@@ -1,17 +1,23 @@
 class Board {
-    constructor(size, battleships){
-        this.size = size; // [height, width]
+    constructor(battleships){
+        this.height = 10;
+        this.width = 10;
         this.battleships = battleships; // Battleship array full of battleships
-        this.board = populateBoard(battleships);
+        this.board = this.populateBoard(battleships);
     }
     populateBoard(battleships){
-        
+        var board = "";
+        for(var i = 0; i < this.height; i++){
+            for(var j = 0; j < this.width; j++){
+                board = board + "[]";
+            }
+            board = board + "\n";
+        }
+        return board;
     }
     getBoard(){
-        for(var i = 0; i < this.size[0]; i++){
-            for(var j = 0; j< this.size[1]; j++){
-                console.log()
-            }
-        }
+        return this.board;
     }
 }
+
+module.exports = Board;
