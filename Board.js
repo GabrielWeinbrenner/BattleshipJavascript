@@ -6,17 +6,24 @@ class Board {
         this.board = this.populateBoard(battleships);
     }
     populateBoard(battleships){
-        var board = "";
-        for(var i = 0; i < this.height; i++){
-            for(var j = 0; j < this.width; j++){
-                board = board + "[]";
-            }
-            board = board + "\n";
+        var board = new Array(100).fill("x");
+        for(var i = 0; i < this.battleships.length; i++){
+            board.splice(this.convertPos(battleships[i].getPosition()),1, "-");
         }
         return board;
     }
     getBoard(){
-        return this.board;
+        var board = "";
+        for (var i = 0; i < this.board.length; i++) {
+            if(i%10===0){
+                board+= " " + i + "\n"
+            }
+            board += this.board[i] + " ";
+        }
+        return board;
+    }
+    convertPos(arr){
+        return this.width * arr[0] + arr[1];
     }
 }
 
