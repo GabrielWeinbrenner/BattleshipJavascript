@@ -8,7 +8,20 @@ class Board {
     populateBoard(battleships){
         var board = new Array(100).fill("x");
         for(var i = 0; i < this.battleships.length; i++){
-            board.splice(this.convertPos(battleships[i].getPosition()),1, "-");
+            var currentBattleship = this.battleships[i];
+            var orientation = currentBattleship.getOrientation();
+            for(var j = 0; j < currentBattleship.getSize(); j++){
+                if (orientation == "right"){
+                    board[this.convertPos(battleships[i].getPosition()) + j] = "-";
+                }else if(orientation == "left"){
+                    board[this.convertPos(battleships[i].getPosition()) - j] = "-";
+                }else if(orientation == "up"){
+                    board[this.convertPos(battleships[i].getPosition()) + (j * this.width)] = "-";
+                }else if(orientation == "down"){
+                    board[this.convertPos(battleships[i].getPosition()) - (j * this.width)] = "-";
+                }
+            }
+            // board.splice(this.convertPos(battleships[i].getPosition()),1, "-");
         }
         return board;
     }
