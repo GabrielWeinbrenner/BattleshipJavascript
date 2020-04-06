@@ -1,5 +1,5 @@
-var Battleship = require("./Battleship");
-var Board = require("./Board");
+var Battleship = require("./src/game/Battleship");
+var Board = require("./src/game/Board");
 
 const carrier = new Battleship([0,0],5,"down");
 const battleship = new Battleship([0, 1], 4, "down");

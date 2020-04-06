@@ -10,7 +10,6 @@ class Board {
         for(var i = 0; i < this.battleships.length; i++){
             var currentBattleship = this.battleships[i];
             var orientation = currentBattleship.getOrientation();
-
             for(var j = 0; j < currentBattleship.getSize(); j++){
                 var getHitPoint = currentBattleship.getHitPoint(j);
                 if (orientation == "right"){
