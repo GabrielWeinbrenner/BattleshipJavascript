@@ -6,22 +6,23 @@ class Board {
         this.board = this.populateBoard(battleships);
     }
     populateBoard(battleships){
-        var board = new Array(100).fill("x");
+        var board = new Array(100).fill("-");
         for(var i = 0; i < this.battleships.length; i++){
             var currentBattleship = this.battleships[i];
             var orientation = currentBattleship.getOrientation();
+
             for(var j = 0; j < currentBattleship.getSize(); j++){
+                var getHitPoint = currentBattleship.getHitPoint(j);
                 if (orientation == "right"){
-                    board[this.convertPos(battleships[i].getPosition()) + j] = "-";
+                    board[this.convertPos(battleships[i].getPosition()) + j] = getHitPoint;
                 }else if(orientation == "left"){
-                    board[this.convertPos(battleships[i].getPosition()) - j] = "-";
+                    board[this.convertPos(battleships[i].getPosition()) - j] = getHitPoint;
                 }else if(orientation == "up"){
-                    board[this.convertPos(battleships[i].getPosition()) + (j * this.width)] = "-";
+                    board[this.convertPos(battleships[i].getPosition()) - (j * this.width)] = getHitPoint;
                 }else if(orientation == "down"){
-                    board[this.convertPos(battleships[i].getPosition()) - (j * this.width)] = "-";
+                    board[this.convertPos(battleships[i].getPosition()) + (j * this.width)] = getHitPoint;
                 }
             }
-            // board.splice(this.convertPos(battleships[i].getPosition()),1, "-");
         }
         return board;
     }
